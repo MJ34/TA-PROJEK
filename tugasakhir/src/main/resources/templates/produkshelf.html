@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/header :: common-header"/>
+<body>
+<div th:replace="common/header :: navbar"/>
+
+<div class="container">
+    <div class="row" style="margin-bottom: -100px;">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-xs-8">
+                    <h2 class="section-headline"><span
+                            th:text="${user}? ${#strings.toUpperCase(user.username)} : 'All Product'"></span></h2>
+                </div>
+                <div class="col-xs-4">
+                </div>
+            </div>
+            <hr style="position: absolute; width:100%; height:6px; background-color: #333; z-index: -1; margin-top: -80px;"/>
+            <img class="img-responsive" src="/image/wood.png" style="margin-top: -75px;"/>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 120px;">
+        <div class="col-xs-3">
+            <h3><label for="kategori">Category</label></h3>
+            <div class="list-group" id="kategori">
+                <a th:href="@{/produkshelf(kategori='all')}" th:classappend="${activeAll}? 'active'"
+                   class="list-group-item">
+                    All
+                </a>
+                <a th:href="@{/searchByKategori(kategori='barecore')}" th:classappend="${activebarecore}? 'active'"
+                   class="list-group-item">
+                    Barecore
+                </a>
+                <a th:href="@{/searchByKategori(kategori='blockBoard')}" th:classappend="${activeblockBoard}? 'active'"
+                   class="list-group-item">Bloack Board</a>
+                <a th:href="@{/searchByKategori(kategori='particleBoard')}"
+                   th:classappend="${activeparticleBoard}? 'active'" class="list-group-item">ParticleBoard</a>
+                <a th:href="@{/searchByKategori(kategori='plywood')}"
+                   th:classappend="${activeplywood}? 'active'" class="list-group-item">Plywood</a>
+            </div>
+        </div>
+        <div class="col-xs-9">
+            <div th:if="${emptyList}">
+                <!--<hr/>-->
+                <h5 style="font-style: italic;">Oops, no result is found. Try something else or try again
+                    later.</h5>
+            </div>
+
+            <table border="0" id="produkList">
+                <thead>
+                <tr>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="produk-item" data-th-each="produk : ${produkList}">
+                    <td>
+                        <div th:if="${produk!=null}">
+                            <!--<hr/>-->
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <a th:href="@{/produkDetail?id=}+${produk.id}">
+                                        <img class="img-responsive shelf-produk"
+                                             th:src="#{adminPath}+@{/image/produk/}+${produk.id}+'.png'"/>
+                                    </a>
+                                </div>
+                                <div class="col-xs-9">
+                                    <a th:href="@{/produkDetail?id=}+${produk.id}"><h4 th:text="${produk.title}"></h4></a>
+                                    <a th:href="@{/produkDetail?id=}+${produk.id}"><span
+                                            style="font-size: x-large; color: #db3208">$<span
+                                            th:text="${#numbers.formatDecimal(produk.harga, 0, 'COMMA', 2, 'POINT')}"></span></span></a>
+                                    <p><strong>Dimensions:</strong> <span th:text="${produk.panjang}"></span> mm2 X
+                                        <span th:text="${produk.lebar}"></span> mm2 X <span th:text="${produk.tebal}"></span> mm2</p>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div th:replace="common/header :: footer"/>
+
+<div th:replace="common/header :: body-bottom-scripts"/>
+<script>
+    $(document).ready(function () {
+        $('#produkList').DataTable({
+            "lengthMenu": [[5, 10, 15, 20, -1], [5, 10, 15, 20, "All"]],
+            "ordering": false,
+            stateSave: true
+        });
+
+        $('#produkList').on( 'page.dt', function () {
+            $('html, body').animate({
+                scrollTop: $('#produkList').offset().top
+            }, 200);
+        });
+    });
+</script>
+</body>
+</html>

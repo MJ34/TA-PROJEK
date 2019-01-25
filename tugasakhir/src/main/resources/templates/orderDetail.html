@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/header :: common-header"/>
+<body>
+<div th:replace="common/header :: navbar"/>
+<div class="container">
+    <div class="row" style="margin-bottom: -100px;">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-xs-8">
+                    <h2 class="section-headline"><span th:text="${#strings.toUpperCase(user.username)}"></span></h2>
+                </div>
+                <div class="col-xs-4">
+
+                </div>
+            </div>
+            <hr style="position: absolute; width:100%; height:6px; background-color: #333; z-index: -1; margin-top: -80px;"/>
+            <img class="img-responsive" src="/image/wood.png" style="margin-top: -75px;"/>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 120px;">
+        <div class="col-xs-9 col-xs-offset-3">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="text-center">
+                        <h2>Order Detail for purchase #<span th:text="${order.id}"></span></h2>
+                    </div>
+                    <hr />
+                    <div class="row">
+                          <div class="col-xs-4">
+                            <div class="panel panel-default height">
+                                <div class="panel-heading"><strong>Shipping Address</strong></div>
+                                <div class="panel-body">
+                                    <span th:text="${order.shippingAddress.shippingAddressName}">David Peere:</span><br/>
+                                    <span th:text="${order.shippingAddress.shippingAddressStreet1}+' '+${order.shippingAddress.shippingAddressStreet2}"></span><br/>
+                                    <span th:text="${order.shippingAddress.shippingAddressCity}"></span><br/>
+                                    <span th:text="${order.shippingAddress.shippingAddressState}"></span><br/>
+                                    <span th:text="${order.shippingAddress.shippingAddressZipcode}"></span><br/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="text-center"><strong>Order summary</strong></h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-condensed">
+                                    <thead>
+                                    <tr>
+                                        <td><strong>Item Name</strong></td>
+                                        <td class="text-center"><strong>Item Price</strong></td>
+                                        <td class="text-center"><strong>Item Quantity</strong></td>
+                                        <td class="text-right"><strong>Total</strong></td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="cartItem : ${cartItemList}">
+                                        <td data-th-text="${cartItem.produk.title}">Samsung Galaxy S5</td>
+                                        <td data-th-text="${cartItem.produk.harga}" class="text-center">$900</td>
+                                        <td data-th-text="${cartItem.qty}" class="text-center">1</td>
+                                        <td data-th-text="${cartItem.subtotal}" class="text-right">$900</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="highrow"></td>
+                                        <td class="highrow"></td>
+                                        <td class="highrow text-center"><strong>Subtotal</strong></td>
+                                        <td data-th-text="${order.orderTotal}" class="highrow text-right">$958.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="emptyrow"></td>
+                                        <td class="emptyrow"></td>
+                                        <td class="emptyrow text-center"><strong>Tax</strong></td>
+                                        <td data-th-text="${#numbers.formatDecimal(order.orderTotal*0.06, 0, 2)}" class="emptyrow text-right">$20</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="emptyrow"><i class="fa fa-barcode iconbig"></i></td>
+                                        <td class="emptyrow"></td>
+                                        <td class="emptyrow text-center"><strong>Total</strong></td>
+                                        <td th:with="total=${order.orderTotal+order.orderTotal*0.06}" data-th-text="${#numbers.formatDecimal(total, 0, 2)}" class="emptyrow text-right">$978.00</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="common/header :: footer"/>
+
+<div th:replace="common/header :: body-bottom-scripts"/>
+
+</body>
+</html>

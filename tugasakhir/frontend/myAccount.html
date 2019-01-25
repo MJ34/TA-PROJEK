@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+    <title>My BookStore</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/non-responsive.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet"/>
+    <link rel="icon" href="image/apple-touch-icon.png">   
+</head>
+<body>
+    <div class="page-top " style="width: 100%; height: 20px; background-color: #f46b42;"></div>
+    <nav class="navbar navbar-default navbar-inverse">
+      <div class="container">
+        <div class="navbar-header">
+          <!-- The mobile navbar-toggle button can be safely removed since you do not need it in a non-responsive implementation -->
+          <a class="navbar-brand" href="index.html">Le's Bookstore</a>
+      </div>
+      <!-- Note that the .navbar-collapse and .collapse classes have been removed from the #navbar -->
+      <div id="navbar">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+            </ul>
+        </li>
+    </ul>
+    <form class="navbar-form navbar-left">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+      </div>
+      <button type="submit" class="btn btn-default">Search</button>
+  </form>
+  <ul class="nav navbar-nav navbar-right">
+    <li><a href="#">SHOPPING CART</a></li>
+    <li><a href="myAccount.html">MY ACCOUNT</a></li>
+</ul>
+</div><!--/.nav-collapse -->
+</div>
+</nav>
+
+<div class="container">
+    <div class="row" style="margin-bottom: -100px;">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-xs-8">
+                    <h2 class="section-headline"><span>User Account</span></h2>
+                </div>
+                <div class="col-xs-4">
+                    <img src="image/logo.png" class="img-responsive" />
+                </div>
+            </div>
+            <hr style="position: absolute; width:100%; height:6px; background-color: #333; z-index: -1; margin-top: -80px;" />
+            <img class="img-responsive" src="image/wood.png" style="margin-top: -75px;" />
+        </div>
+    </div>
+    <div class="row" style="margin-top: 120px;">
+        <div class="col-xs-9 col-xs-offset-3">
+
+            <!-- Nav tabs category -->
+            <ul class="nav nav-tabs faq-cat-tabs">
+                <li><a href="#tab-1" data-toggle="tab"><span style="color:red;">Create new account</span></a></li>
+                <li class="active"><a href="#tab-2" data-toggle="tab"><span style="color:red;">Log in</span></a></li>
+                <li><a href="#tab-3" data-toggle="tab"><span style="color:red;">Forget Password</span></a></li>
+
+            </ul>
+    
+            <!-- Tab panes -->
+            <div class="tab-content faq-cat-content">
+                <div class="tab-pane fade" id="tab-1">
+                    <div class="panel-group">
+                        <div class="panel panel-default panel-faq" style="border: none;">
+                            
+                                <div class="panel-body" style="background-color: #ededed; margin-top: 20px;">
+                                    <form>
+                                    <div class="form-group">
+                                        <label for="username">Username *</label>
+                                        <input type="password" class="form-control" id="username" >
+                                        <p style="color: #828282;"> Enter your username, special charaters are not allowed.</p>
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="exampleInputEmail1">Email address *</label>
+                                        <input type="email" class="form-control" id="exampleInputEmail1">
+                                        <p style="color: #828282;"> A valid e-mail address. All e-mails from the system will be sent to this address. The e-mail address is not made public and will only be used if you wish to receive a new password or wish to receive certain news or notifications by e-mail.</p>
+                                      </div>
+                                      <button type="submit" class="btn btn-primary">Create new account</button>
+                                    </form>
+                                </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="tab-pane active in fade" id="tab-2">
+                    <div class="panel-group">
+                        <div class="panel panel-default panel-faq" style="border: none;">
+                            
+                                <div class="panel-body" style="background-color: #ededed; margin-top: 20px;">
+                                    <form>
+                                    <div class="form-group">
+                                        <label for="username">Username *</label>
+                                        <input type="text" class="form-control" id="username">
+                                        <p style="color: #828282;"> Enter your username</p>
+                                      </div>
+                                    <div class="form-group">
+                                        <label for="password">Password *</label>
+                                        <input type="password" class="form-control" id="password" >
+                                      <p style="color: #828282;"> Enter the password that accompanies your username</p>
+                                      </div>
+
+                                      <button type="submit" class="btn btn-default">Log in</button>
+                                    </form>
+                                </div>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="tab-3">
+                    <div class="panel-group">
+                        <div class="panel panel-default panel-faq" style="border: none;">
+                            
+                                <div class="panel-body" style="background-color: #ededed; margin-top: 20px;">
+                                    <form>
+                                    <div class="form-group">
+                                        <label for="Email">Your Email *</label>
+                                        <input type="text" class="form-control" id="email">
+                                        <p style="color: #828282;"> Enter your registered email address.</p>
+                                      </div>
+
+                                      <button type="submit" class="btn btn-default">Submit</button>
+                                    </form>
+                                </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/scripts.js"></script>
+</body>
+</html>

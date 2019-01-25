@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/header :: common-header"/>
+<body>
+<div th:replace="common/header :: navbar"/>
+<div class="container">
+    <div class="row">
+        <form class="form-horizontal" th:action="@{/produk/updateProduk}" method="post" enctype="multipart/form-data">
+            <fieldset>
+                <!-- Form Name -->
+                <legend class="center-block">Update Produk Informasi <br/><span style="font-size: small"> * is a required field</span></legend>
+
+                <input hidden="hidden" name="id" th:value="${produk.id}"/>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="title">Title *</label>
+                    <div class="col-md-8">
+                        <input th:value="${produk.title}" id="title" name="title" type="text" placeholder="Title" class="form-control input-md" required="required"/>
+                        <span class="help-block">Title of the produk</span>
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for= "tglMasuk">Tanggal Masuk</label>
+                    <div class="col-md-8">
+                        <input th:value="${produk.tglMasuk}" id="tglMasuk" name="tglMasuk" type="date"
+                               placeholder="Tanggal Masuk" class="form-control input-md"/>
+                        <span class="help-block">Tanggal Masuk</span>
+                    </div>
+                </div>
+
+                <!-- Select Basic -->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="grade">Grade</label>
+                    <div class="col-md-8">
+                        <select th:value="${produk.grade}" id="grade" name="grade" class="form-control">
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Select Basic -->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="kategori">Category *</label>
+                    <div class="col-md-8">
+                        <select th:value="${produk.kategori}" id="kategori" name="kategori" class="form-control" required="required">
+                            <option value="" selected="selected" disabled="disabled">Please select an option...
+                            </option>
+                            <option value="barecore" th:selected="(${produk.kategori}=='barecore')">Barecore
+                            </option>
+                            <option value="blockBoard" th:selected="(${produk.kategori}=='blockBoard')">Block Board</option>
+                            <option value="particleBoard" th:selected="(${produk.kategori}=='particleBoard ')">
+                                Particle Board
+                            </option>
+                            <option value="plywood" th:selected="(${produk.kategori}=='plywood')">
+                                Plywood
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Appended Input-->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="panjang">Panjang</label>
+                    <div class="col-md-8">
+                        <div class="input-group">
+                            <input th:value="${produk.panjang}" id="panjang" name="panjang" class="form-control"
+                                   placeholder="panjang" type="number"/>
+                            <span class="input-group-addon">Panjang</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Appended Input-->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="lebar">Lebar</label>
+                    <div class="col-md-8">
+                        <div class="input-group">
+                            <input th:value="${produk.lebar}" id="lebar" name="lebar" class="form-control"
+                                   placeholder="lebar" type="number"/>
+                            <span class="input-group-addon">Lebar</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Appended Input-->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="tebal">Tebal</label>
+                    <div class="col-md-8">
+                        <div class="input-group">
+                            <input th:value="${produk.tebal}" id="tebal" name="tebal" class="form-control"
+                                   placeholder="tebal" type="number"/>
+                            <span class="input-group-addon">Tebal</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="stok">Stok</label>
+                    <div class="col-md-8">
+                        <input th:value="${produk.stok}" id="stok" name="stok" type="stok" class="form-control input-md"/>
+                        <span class="help-block">Stok Produk</span>
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="harga">Harga *</label>
+                    <div class="col-md-8">
+                        <div class="input-group">
+                            <span class="input-group-addon">$</span>
+                            <input th:value="${produk.harga}" id="harga" name="harga" type="number" step="0.01" placeholder="harga"
+                                   class="form-control input-md" required="required"/>
+                        </div>
+                        <p class="help-block">Harga produk</p>
+                    </div>
+                </div>
+
+                <!-- Radio input-->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="pageNumber">Status</label>
+                    <div class="col-md-8">
+                        <label><input   name="active" type="radio" value="true" checked="checked"/> Active </label>&nbsp;
+                        <label><input   name="active" type="radio" value="false"/> Inactive </label>
+                        <span class="help-block">Pilih Active jika produk mau di tampilkan.</span>
+                    </div>
+                </div>
+
+                <!-- Textarea -->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="deskripsi">Deskripsi</label>
+                    <div class="col-md-8">
+                        <textarea th:value="${produk.deskripsi}" class="form-control" th:text="${produk.deskripsi}" rows="5" id="deskripsi" name="deskripsi" placeholder="Produk description"></textarea>
+                        <span class="help-block">Deskripsi produk</span>
+                    </div>
+                </div>
+
+                <!--upload image-->
+                <div class="form-group">
+                    <div class="col-md-2">
+                        <label for="produkImage">Upload Produk Image</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input id="produkImage" type="file" name="produkImage" th:value="${produk.produkImage}"/>
+                    </div>
+                </div>
+
+                <!-- Button (Double) -->
+                <div class="form-group">
+                    <div class="col-md-2"></div>
+
+                    <div class="col-md-8">
+                        <button type="submit" class="btn btn-success">Update</button>
+                        <a class="btn btn-danger" th:href="@{/produk/produkInfo?id=}+${produk.id}">Cancel</a>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+<div th:replace="common/header :: body-bottom-scripts"/>
+</body>
+</html>

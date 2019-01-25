@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/header :: common-header">
+    <script src="../static/js/dataTables.bootstrap.min.js"></script>
+</head>
+<body>
+<div th:replace="common/header :: navbar"/>
+
+<div class="container">
+    <div class="table-responsive">
+        <table id="produkListTable" class="table table-bordered table-hover table-striped">
+            <thead>
+            <tr>
+                <th><input th:id="selectAllProduk" type="checkbox"/></th>
+                <th>Title</th>
+                <th>Tanggal Masuk</th>
+                <th>Kategori</th>
+                <th>Harga</th>
+                <th>Active?</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="box" data-th-each="produk : ${produkList}">
+                <td>
+                    <input hidden="hidden" name="id" th:value="${produk.id}" />
+                    <input th:id="'selected'+${produk.id}" class="checkboxBook" type="checkbox"/>
+                </td>
+                <td><a th:href="@{/produk/produkInfo?id=}+${produk.id}"><span th:text="${produk.title}"></span></a></td>
+                <td data-th-text="${produk.tglMasuk}">...</td>
+                <td data-th-text="${produk.kategori}">...</td>
+                <td data-th-text="${produk.harga}">...</td>
+                <td data-th-text="${produk.active}">...</td>
+                <td>
+                        <input hidden="hidden" name="id" th:value="${produk.id}" />
+                        <button th:id="'oneProduk-'+${produk.id}" class='btn btn-danger btn-xs delete-produk' type="submit" value="delete"><span
+                                class="fa fa-times"></span> delete
+                        </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <button class="btn btn-danger" id="deleteSelected">Delete Selected</button>
+</div>
+
+<div th:replace="common/header :: body-bottom-scripts"/>
+<script>
+    $(document).ready(function() {
+        $('#produkListTable').DataTable({
+            "lengthMenu": [[5, 10, 15, 20, -1], [5, 10, 15, 20, "All"]],
+            "ordering": false,
+            stateSave: true
+        });
+    } );
+</script>
+</body>
+</html>
